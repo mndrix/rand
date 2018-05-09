@@ -8,7 +8,7 @@ import (
 )
 
 // global value that performs all random number operations
-var rand *math.Rand = math.New(&source{})
+var rand = math.New(&source{})
 
 // math/rand Source using entropy from crypto/rand
 type source struct {
