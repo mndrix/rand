@@ -36,17 +36,20 @@ func (src *source) Int63() int64 {
 	return int64(x >> 1) // need 63 bit number
 }
 
-// Intn is like Intn in math/rand
+// Intn returns, as an int, a non-negative pseudo-random number in
+// [0,n). It panics if n <= 0.
 func Intn(n int) int {
 	return rand.Intn(n)
 }
 
-// Int63 is like Int63 in math/rand
+// Int63 returns a non-negative pseudo-random 63-bit integer as an
+// int64.
 func Int63() int64 {
 	return rand.Int63()
 }
 
-// Int63n is like Int63n in math/rand
+// Int63n returns, as an int64, a non-negative pseudo-random number in
+// [0,n). It panics if n <= 0.
 func Int63n(n int64) int64 {
 	return rand.Int63n(n)
 }
