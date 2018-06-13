@@ -8,7 +8,7 @@ import (
 )
 
 // global value that performs all random number operations
-var rand = math.New(&source{})
+var globalSource = math.New(&source{})
 
 // math/rand Source using entropy from crypto/rand
 type source struct {
@@ -39,17 +39,17 @@ func (src *source) Int63() int64 {
 // Intn returns, as an int, a non-negative pseudo-random number in
 // [0,n). It panics if n <= 0.
 func Intn(n int) int {
-	return rand.Intn(n)
+	return globalSource.Intn(n)
 }
 
 // Int63 returns a non-negative pseudo-random 63-bit integer as an
 // int64.
 func Int63() int64 {
-	return rand.Int63()
+	return globalSource.Int63()
 }
 
 // Int63n returns, as an int64, a non-negative pseudo-random number in
 // [0,n). It panics if n <= 0.
 func Int63n(n int64) int64 {
-	return rand.Int63n(n)
+	return globalSource.Int63n(n)
 }
