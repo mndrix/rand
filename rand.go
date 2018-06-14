@@ -53,10 +53,3 @@ func Int63() int64 {
 func Int63n(n int64) int64 {
 	return globalSource.Int63n(n)
 }
-
-// Shuffle pseudo-randomizes the order of elements using the default Source.
-// n is the number of elements. Shuffle panics if n < 0.
-// swap swaps the elements with indexes i and j.
-func Shuffle(n int, swap func(i, j int)) {
-	globalSource.Shuffle(n, swap)
-}
