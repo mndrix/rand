@@ -16,6 +16,9 @@ type source struct {
 	mtx  sync.Mutex
 }
 
+// Float64 returns a pseudo-random number in [0.0,1.0)
+func Float64() float64 { return globalSource.Float64() }
+
 // needed by math/rand.Source, but we don't require seeding
 func (src *source) Seed(_ int64) {}
 
