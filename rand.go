@@ -24,6 +24,11 @@ func (src *source) Seed(_ int64) {}
 
 // needed by math/rand.Source
 func (src *source) Int63() int64 {
+	return int64(src.Uint64() >> 1) // need 63 bit number
+}
+
+// Uint64 returns a randomly selected 64-bit unsigned integer.
+func (src *source) Uint64() uint64 {
 	src.mtx.Lock()
 	defer src.mtx.Unlock()
 
@@ -35,8 +40,7 @@ func (src *source) Int63() int64 {
 	if n != 8 {
 		panic("read too few random bytes")
 	}
-	x := binary.BigEndian.Uint64(data)
-	return int64(x >> 1) // need 63 bit number
+	return binary.BigEndian.Uint64(data)
 }
 
 // Intn returns, as an int, a non-negative pseudo-random number in
@@ -55,4 +59,9 @@ func Int63() int64 {
 // [0,n). It panics if n <= 0.
 func Int63n(n int64) int64 {
 	return globalSource.Int63n(n)
+}
+
+// Uint64 returns a randomly selected 64-bit unsigned integer.
+func Uint64() uint64 {
+	return globalSource.Uint64()
 }
